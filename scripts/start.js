@@ -60,7 +60,8 @@ if (process.env.HOST) {
   );
   console.log();
 }
-
+const child_process = require('child_process');
+const nwPath = require('nw').findpath();
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
@@ -127,7 +128,14 @@ checkBrowsers(paths.appPath, isInteractive)
       }
 
       console.log(chalk.cyan('Starting the development server...\n'));
-      openBrowser(urls.localUrlForBrowser);
+      // openBrowser(urls.localUrlForBrowser);
+	  let nw = child_process.fork(`${__dirname}/nw.js`, [urls.localUrlForBrowser, nwPath,], {});
+	  nw.on('message', msg => {
+	    console.log('收到nw进程消息', msg);
+	  });
+	  nw.on('close', msg => {
+	    console.log('nw进程关闭', msg);
+	  });
     });
 
     ['SIGINT', 'SIGTERM'].forEach(function(sig) {
