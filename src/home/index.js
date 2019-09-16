@@ -68,6 +68,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Home extends R
                     duration: 200,
                 },
                 {
+                    name: "追光者",
+                    author: "",
+                    src: "",
+                    imgs: [],
+                    audioPaused: true,
+                    value: 0,
+                    duration: 0,
+                },
+                {
                     name: "告白气球",
                     author: "周二珂",
                     src: "https://6d69-missubear-developmen-1256962785.tcb.qcloud.la/audio/%E5%91%8A%E7%99%BD%E6%B0%94%E7%90%83%20-%20%E5%91%A8%E4%BA%8C%E7%8F%82.mp3",
@@ -317,7 +326,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(class Home extends R
                             <Dropdown overlay={<Menu style={{ textAlignLast: "justify", textAlign: "justify" }} selectable={true} selectedKeys={[this.state.currentMusicIedex]}>
                                 {this.state.musicList.map((val, i) => {
                                     return (
-                                        <Menu.Item key={i} title={val.author} onClick={this.changeMuisc}>
+                                        <Menu.Item key={i} title={val.author} onClick={this.changeMuisc} disabled={!val.src}>
                                             {val.name}
                                         </Menu.Item>
                                     )
