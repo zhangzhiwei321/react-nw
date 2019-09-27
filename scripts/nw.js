@@ -58,6 +58,7 @@ try {
 
 }
 
+
 console.log(nwPath);
 
 cmd.get(nwPath, (err, data, stderr) => {
@@ -70,3 +71,15 @@ cmd.get(nwPath, (err, data, stderr) => {
 
 	process.exit()
 });
+
+
+// const os=require('os');
+
+// let deskTop=os.homedir()+'\\Desktop';
+
+// fs.exists(deskTop+'\\nw-snapshoot',res=>{
+// 	!res&&fs.mkdir(deskTop)
+// })
+
+
+
